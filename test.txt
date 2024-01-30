@@ -1,0 +1,40 @@
+Test 1
+    REGEX = (a+ab+ba)^2
+    CODEWORDS = ["baba","baab","baa", "abba", "abab", "aba", "aab", "aa"]
+    S_0 = ["b"]
+    S_1 = ["aba", "aab", "aa"]
+    result = false => "aba" in CODEWORDS
+    actual = false
+
+Test 2
+    REGEX = a+b+(ab)^2ab
+    CODEWORDS = ["ababab", "b", "a"]
+    S_0 = ["babab"]
+    S_1 = ["abab"]
+    S_2 = ["ab", "bab"]
+    S_3 = ["abab"] v ["b", "ab"]
+    result = false => "b" należy do CODEWORDS
+    actual = false
+
+Test 3
+    REGEX = ((a+b)^2+c)
+    CODEWORDS = ["c, "bb", "ba", "ab", "aa"]
+    S_0 = empty
+    S_1 = empty
+    result = true => suffix loop (empty)
+    actual = true
+
+Test 4
+    REGEX = (a+b)^2
+    CODEWORDS = ["ab", "ba", "aa", "bb"]
+    S_0 = empty
+    S_1 = empty
+    result = true => suffix loop (empty)
+    actual = true
+
+Test 5
+    REGEX = (a+b+c)^2+ac(ab+ba)ac+ab(bc+cb)ab
+    CODEWORDS = ["abcbab","abbcab","acbaac","acabac","cc","cb","ca","bc","bb","ba","ac","ab","aa"]
+    S_0 = ["cbab", "bcab", "baac", "abac"]
+    S_1 = ["ab", ...]
+    result = false => "ab" in CODEWORDS
